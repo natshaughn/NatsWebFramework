@@ -1,24 +1,45 @@
 package pages;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import element.ElementWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Login {
-    public static WebDriver driver;
+    private WebDriver driver;
 
-    public static String loginButtonId = "login-button";
-    public static String loginTitleXpath = "//div[@class='login_logo']";
-    public static String PasswordId = "password";
-    public static String standard_user = "standard_user";
-    public static String usernameId = "user-name";
+    private ElementWrapper usernameInput;
+    private ElementWrapper passwordInput;
+    private ElementWrapper loginButton;
+    private ElementWrapper loginTitle;
 
-    public static void inputUsername() throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get("https://www.saucedemo.com/");
-        Thread.sleep(2000);
-        driver.findElement(By.id(usernameId)).sendKeys(standard_user);
+    public Login(WebDriver driver) {
+        this.driver = driver;
+        this.usernameInput = new ElementWrapper(driver, By.id("user-name"));
+        this.passwordInput = new ElementWrapper(driver, By.id("password"));
+        this.loginButton = new ElementWrapper(driver, By.id("login-button"));
+        this.loginTitle = new ElementWrapper(driver, By.xpath("//div[@class='login_logo']"));
     }
+
+    public void inputUsername(String username) {
+        usernameInput.sendKeys(username);
+    }
+
+    public void inputPassword(String password) {
+        passwordInput.sendKeys(password);
+    }
+
+    public void clickLoginButton() {
+        loginButton.click();
+    }
+
+    public String getLoginPageTitle() {
+        return loginTitle.getText();
+    }
+
+    public void loginToSwagLabs(String username, String password) {
+        inputUsername(username);
+        inputPassword(password);
+        clickLoginButton();
+    }
+
 }
