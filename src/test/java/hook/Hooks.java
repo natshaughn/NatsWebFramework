@@ -10,24 +10,23 @@ import org.openqa.selenium.WebDriver;
 public class Hooks {
     @Before
     public void beforeScenario() {
+        System.out.println("Starting scenario...");
         WebDriver driver = DriverManager.getDriver();
-        System.out.println("Before Scenario: WebDriver initialized");
     }
 
     @After
     public void afterScenario() {
-        System.out.println("After Scenario: WebDriver closed");
+        System.out.println("Ending scenario...");
         DriverManager.closeDriver();
+    }
+
+    @BeforeStep
+    public void beforeStep() {
+
     }
 
     @AfterStep
     public void afterStep() {
         WebDriver driver = DriverManager.getDriver();
-        System.out.println("After Step: Log or Screenshot (if needed)");
-    }
-
-    @BeforeStep
-    public void beforeStep() {
-        System.out.println("Before Step: Setup before each step (optional)");
     }
 }

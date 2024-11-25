@@ -1,7 +1,9 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.Login;
 import driver.DriverManager;
@@ -12,8 +14,8 @@ public class LoginSteps {
     private WebDriver driver;
 
     public LoginSteps() {
-        driver = DriverManager.getDriver(); // Assuming you are managing the driver here
-        login = new Login(driver); // Initialize the Login page with the driver
+        driver = DriverManager.getDriver();
+        login = new Login(driver);
     }
 
     @Given("^I am on the login page$")
@@ -22,6 +24,12 @@ public class LoginSteps {
         String actualTitle = login.getLoginPageTitle();
         String expectedTitle = "Swag Labs";
         assertEquals("Expected login page title", expectedTitle, actualTitle);
+    }
+
+    @Given("^I have logged in$")
+    public void iHaveLoggedIn() {
+        iAmOnTheLoginPage();
+        login.loginToSwagLabs("standard_user", "secret_sauce");
     }
 
     @When("^I enter the username '([^']*)'$")
@@ -37,6 +45,13 @@ public class LoginSteps {
     @When("^I click the login button$")
     public void whenIClickTheLoginButton() {
         login.clickLoginButton();
+    }
+
+    @Then("^an error message should appear$")
+    public void anErrorMessageShouldAppear() {
+        String actualMessage = login.getErrorMessage();
+        String expectedMessage = "Epic sadface: Username and password do not match any user in this service";
+        Assert.assertEquals("The error message is incorrect", expectedMessage, actualMessage);
     }
 
 }
