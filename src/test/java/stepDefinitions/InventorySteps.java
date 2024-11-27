@@ -23,6 +23,7 @@ public class InventorySteps {
     @When("^I add '([^']*)' to cart$")
     public void iAddProductToCart(String product) {
         inventory.addProductToCart(product);
+        System.out.println("product" + product);
     }
 
     @Then("^I am on the inventory page$")
@@ -30,6 +31,8 @@ public class InventorySteps {
         String actualTitle = inventory.getInventoryPageTitle();
         String expectedTitle = "Products";
         assertEquals("Expected inventory page title did not match", expectedTitle, actualTitle);
+        System.out.println("actual message.." + actualTitle);
+        System.out.println("expected message.." + expectedTitle);
     }
 
     @Then("^the price of all products will be correct")
@@ -42,11 +45,13 @@ public class InventorySteps {
             String productName = entry.getKey();
             String expectedPrice = entry.getValue();
 
-            // Fetch the product name and price from the webpage
             String actualPrice = inventory.getProductPrice(productName);
 
-            // Validate the price matches
             assertEquals("Price for product " + productName + " doesn't match", expectedPrice, actualPrice);
+
+            System.out.println("productname" + productName);
+            System.out.println("expected price" + expectedPrice);
+            System.out.println("actual price" + actualPrice);
         }
     }
 }

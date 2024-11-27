@@ -3,7 +3,6 @@ package stepDefinitions;
 import driver.DriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.CheckoutComplete;
@@ -24,6 +23,9 @@ public class CheckoutCompleteSteps {
         String firstname = UUID.randomUUID().toString();
         String lastname = UUID.randomUUID().toString();
         String postcode = UUID.randomUUID().toString();
+        System.out.println("firstname" + firstname);
+        System.out.println("lastname" + lastname);
+        System.out.println("postcode" + postcode);
         checkoutComplete.completeCheckoutProcess(firstname, lastname, postcode);
     }
 
@@ -34,5 +36,7 @@ public class CheckoutCompleteSteps {
         String expectedMessage = "Thank you for your order!";
 
         Assert.assertEquals("The confirmation message is incorrect", expectedMessage, actualMessage);
+        System.out.println("actual message.." + actualMessage);
+        System.out.println("expected message.." + expectedMessage);
     }
 }
