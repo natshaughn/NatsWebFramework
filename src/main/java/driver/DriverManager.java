@@ -15,7 +15,7 @@ public class DriverManager {
             driver = new ChromeDriver();
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-            System.out.println("Initialized new WebDriver instance: " + driver);
+            System.out.println("Initialised new WebDriver instance: " + driver);
         } else {
             System.out.println("Reusing existing WebDriver instance: " + driver);
         }

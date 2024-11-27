@@ -11,7 +11,6 @@ public class Cart {
 
     public Cart(WebDriver driver) {
         this.driver = driver;
-
         this.checkoutButton = new ElementWrapper(driver, By.id("checkout"));
     }
 
