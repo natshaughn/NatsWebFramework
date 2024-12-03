@@ -23,9 +23,9 @@ public class CheckoutCompleteSteps {
         String firstname = UUID.randomUUID().toString();
         String lastname = UUID.randomUUID().toString();
         String postcode = UUID.randomUUID().toString();
-        System.out.println("firstname" + firstname);
-        System.out.println("lastname" + lastname);
-        System.out.println("postcode" + postcode);
+        System.out.println("Firstname: " + firstname);
+        System.out.println("Lastname: " + lastname);
+        System.out.println("Postcode: " + postcode);
         checkoutComplete.completeCheckoutProcess(firstname, lastname, postcode);
     }
 
@@ -36,7 +36,7 @@ public class CheckoutCompleteSteps {
         String expectedMessage = "Thank you for your order!";
 
         Assert.assertEquals("The confirmation message is incorrect", expectedMessage, actualMessage);
-        System.out.println("actual message.." + actualMessage);
-        System.out.println("expected message.." + expectedMessage);
+        System.out.println("actual message.. " + actualMessage);
+        System.out.println("expected message.. " + expectedMessage);
     }
 }

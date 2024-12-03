@@ -20,11 +20,10 @@ public class LoginSteps {
 
     @Given("^I am on the login page$")
     public void iAmOnTheLoginPage() {
-        driver.get("https://www.saucedemo.com/");
         String actualTitle = login.getLoginPageTitle();
         String expectedTitle = "Swag Labs";
-        System.out.println("actual title" + actualTitle);
-        System.out.println("expected title" + expectedTitle);
+        System.out.println("Actual Title: " + actualTitle);
+        System.out.println("Expected Title: " + expectedTitle);
         assertEquals("Expected login page title", expectedTitle, actualTitle);
     }
 
@@ -37,13 +36,13 @@ public class LoginSteps {
     @When("^I enter the username '([^']*)'$")
     public void whenIEnterTheUsername(String username) {
         login.inputUsername(username);
-        System.out.println("username" + username);
+        System.out.println("Username: " + username);
     }
 
     @When("^I enter the password '([^']*)'$")
     public void whenIEnterThePassword(String password) {
         login.inputPassword(password);
-        System.out.println("password" + password);
+        System.out.println("Password: " + password);
     }
 
     @When("^I click the login button$")
@@ -55,9 +54,8 @@ public class LoginSteps {
     public void anErrorMessageShouldAppear() {
         String actualMessage = login.getErrorMessage();
         String expectedMessage = "Epic sadface: Username and password do not match any user in this service";
-        System.out.println("actual msg" + actualMessage);
-        System.out.println("expected msg" + expectedMessage);
+        System.out.println("Actual msg: " + actualMessage);
+        System.out.println("Expected msg: " + expectedMessage);
         Assert.assertEquals("The error message is incorrect", expectedMessage, actualMessage);
     }
-
 }
