@@ -12,11 +12,10 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 
 public class InventorySteps {
-    private Inventory inventory;
-    private WebDriver driver;
+    private final Inventory inventory;
 
     public InventorySteps() {
-        driver = DriverManager.getDriver();
+        WebDriver driver = DriverManager.getDriver();
         inventory = new Inventory(driver);
     }
 

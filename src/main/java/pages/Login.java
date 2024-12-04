@@ -5,17 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class Login {
-    private WebDriver driver;
-
-    private ElementWrapper loginButton;
-    private ElementWrapper loginErrorMsg;
-    private ElementWrapper loginTitle;
-    private ElementWrapper passwordInput;
-    private ElementWrapper usernameInput;
+    private final ElementWrapper loginButton;
+    private final ElementWrapper loginErrorMsg;
+    private final ElementWrapper loginTitle;
+    private final ElementWrapper passwordInput;
+    private final ElementWrapper usernameInput;
 
     public Login(WebDriver driver) {
-        this.driver = driver;
-
         this.loginButton = new ElementWrapper(driver, By.id("login-button"));
         this.loginErrorMsg = new ElementWrapper(driver, By.xpath("//div/h3"));
         this.loginTitle = new ElementWrapper(driver, By.xpath("//div[@class='login_logo']"));
@@ -48,5 +44,4 @@ public class Login {
         inputPassword(password);
         clickLoginButton();
     }
-
 }

@@ -10,11 +10,10 @@ import driver.DriverManager;
 import static org.junit.Assert.assertEquals;
 
 public class LoginSteps {
-    private Login login;
-    private WebDriver driver;
+    private final Login login;
 
     public LoginSteps() {
-        driver = DriverManager.getDriver();
+        WebDriver driver = DriverManager.getDriver();
         login = new Login(driver);
     }
 

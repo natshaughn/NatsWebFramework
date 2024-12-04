@@ -5,16 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CheckoutComplete {
-    private WebDriver driver;
-    private Cart cart;
-    private CheckoutStepOne checkoutStepOne;
-    private CheckoutStepTwo checkoutStepTwo;
-    private Inventory inventory;
-
-    private ElementWrapper checkoutCompleteMsg;
+    private final Cart cart;
+    private final CheckoutStepOne checkoutStepOne;
+    private final CheckoutStepTwo checkoutStepTwo;
+    private final Inventory inventory;
+    private final ElementWrapper checkoutCompleteMsg;
 
     public CheckoutComplete(WebDriver driver) {
-        this.driver = driver;
         this.checkoutCompleteMsg = new ElementWrapper(driver, By.xpath("//div/h2"));
         cart = new Cart(driver);
         checkoutStepOne = new CheckoutStepOne(driver);
