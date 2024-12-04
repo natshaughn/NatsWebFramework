@@ -10,11 +10,10 @@ import pages.CheckoutComplete;
 import java.util.UUID;
 
 public class CheckoutCompleteSteps {
-    private WebDriver driver;
-    private CheckoutComplete checkoutComplete;
+    private final CheckoutComplete checkoutComplete;
 
     public CheckoutCompleteSteps() {
-        driver = DriverManager.getDriver();
+        WebDriver driver = DriverManager.getDriver();
         checkoutComplete = new CheckoutComplete(driver);
     }
 
@@ -32,9 +31,7 @@ public class CheckoutCompleteSteps {
     @Then("^a message will appear confirming my order$")
     public void aMessageWillAppearConfirmingMyOrder() {
         String actualMessage = checkoutComplete.getCheckoutCompleteMessage();
-
         String expectedMessage = "Thank you for your order!";
-
         Assert.assertEquals("The confirmation message is incorrect", expectedMessage, actualMessage);
         System.out.println("actual message.. " + actualMessage);
         System.out.println("expected message.. " + expectedMessage);

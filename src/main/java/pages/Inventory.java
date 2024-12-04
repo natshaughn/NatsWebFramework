@@ -5,10 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class Inventory {
-    private WebDriver driver;
-
-    private ElementWrapper cartButton;
-    private ElementWrapper inventoryTitle;
+    private final WebDriver driver;
+    private final ElementWrapper cartButton;
+    private final ElementWrapper inventoryTitle;
 
     public Inventory(WebDriver driver) {
         this.driver = driver;
@@ -41,10 +40,6 @@ public class Inventory {
 
     public String getInventoryPageTitle() {
         return inventoryTitle.getText();
-    }
-
-    public String getProductName(String product) {
-        return productName(product).getText();
     }
 
     public String getProductPrice(String product) {

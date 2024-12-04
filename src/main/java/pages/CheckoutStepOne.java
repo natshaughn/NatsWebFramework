@@ -5,16 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CheckoutStepOne {
-    private WebDriver driver;
 
-    private ElementWrapper continueButton;
-    private ElementWrapper firstNameInput;
-    private ElementWrapper lastNameInput;
-    private ElementWrapper postcodeInput;
+    private final ElementWrapper continueButton;
+    private final ElementWrapper firstNameInput;
+    private final ElementWrapper lastNameInput;
+    private final ElementWrapper postcodeInput;
 
     public CheckoutStepOne(WebDriver driver) {
-        this.driver = driver;
-
         this.continueButton = new ElementWrapper(driver, By.id("continue"));
         this.firstNameInput = new ElementWrapper(driver, By.id("first-name"));
         this.lastNameInput = new ElementWrapper(driver, By.id("last-name"));

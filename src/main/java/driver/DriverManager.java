@@ -3,9 +3,14 @@ package driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import utility.ConfigReader;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public class DriverManager {
@@ -14,6 +19,7 @@ public class DriverManager {
     public static WebDriver getDriver() {
         if (driver == null) {
             String browserType = ConfigReader.getProperty("browser").toLowerCase();
+            String gridUrl = ConfigReader.getProperty("gridURL");
 
             switch (browserType) {
                 case "chrome":
@@ -23,6 +29,24 @@ public class DriverManager {
                 case  "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
+                    break;
+                case "chromedocker":
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    try {
+                        driver = new RemoteWebDriver(new URL(gridUrl), chromeOptions);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                        throw new RuntimeException("Invalid Selenium Grid URL");
+                    }
+                    break;
+                case "firefoxdocker":
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    try {
+                        driver = new RemoteWebDriver(new URL(gridUrl), firefoxOptions);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                        throw new RuntimeException("Invalid Selenium Grid URL");
+                    }
                     break;
                 default:
                     throw new IllegalArgumentException("Unsupported browser: " + browserType);
