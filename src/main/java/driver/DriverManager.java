@@ -33,6 +33,8 @@ public class DriverManager {
                 case "chromedocker":
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--headless");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
                     try {
                         driver = new RemoteWebDriver(new URL(gridUrl), chromeOptions);
                     } catch (MalformedURLException e) {
