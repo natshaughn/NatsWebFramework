@@ -18,8 +18,15 @@ public class DriverManager {
 
     public static WebDriver getDriver() {
         if (driver == null) {
+            String jenkinsEnv = System.getenv("JENKINS_HOME");
+            boolean isJenkins = jenkinsEnv != null;
+
             String browserType = ConfigReader.getProperty("browser").toLowerCase();
             String gridUrl = ConfigReader.getProperty("gridURL");
+
+            if (isJenkins) {
+                gridUrl = "http://selenium-hub:4444/wd/hub";
+            }
 
             switch (browserType) {
                 case "chrome":
