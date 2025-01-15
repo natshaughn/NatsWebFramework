@@ -39,7 +39,6 @@ public class DriverManager {
                     break;
                 case "chromedocker":
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--headless");
                     try {
                         driver = new RemoteWebDriver(new URL(gridUrl), chromeOptions);
                     } catch (MalformedURLException e) {
