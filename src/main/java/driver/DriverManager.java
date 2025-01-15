@@ -48,9 +48,6 @@ public class DriverManager {
                     break;
                 case "firefoxdocker":
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    firefoxOptions.addArguments("--headless");
-                    firefoxOptions.addArguments("--no-sandbox");
-                    firefoxOptions.addArguments("--disable-dev-shm-usage");
                     try {
                         driver = new RemoteWebDriver(new URL(gridUrl), firefoxOptions);
                     } catch (MalformedURLException e) {
