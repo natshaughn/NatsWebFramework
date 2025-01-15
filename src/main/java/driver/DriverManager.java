@@ -41,7 +41,6 @@ public class DriverManager {
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--headless");
                     chromeOptions.addArguments("--no-sandbox");
-                    chromeOptions.addArguments("--disable-dev-shm-usage");
                     try {
                         driver = new RemoteWebDriver(new URL(gridUrl), chromeOptions);
                     } catch (MalformedURLException e) {
