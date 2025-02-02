@@ -46,4 +46,3 @@ public class Inventory {
         return productPrice(product).getText().replace("$", "").trim();
     }
 }
-
