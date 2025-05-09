@@ -31,25 +31,31 @@ public class DriverManager {
             switch (browserType) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--headless=new");
+                    driver = new ChromeDriver(chromeOptions);
                     break;
+
                 case  "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.addArguments("--headless");
+                    driver = new FirefoxDriver(firefoxOptions);
                     break;
+
                 case "chromedocker":
-                    ChromeOptions chromeOptions = new ChromeOptions();
+                    ChromeOptions chromeDockerOptions = new ChromeOptions();
                     try {
-                        driver = new RemoteWebDriver(new URL(gridUrl), chromeOptions);
+                        driver = new RemoteWebDriver(new URL(gridUrl), chromeDockerOptions);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                         throw new RuntimeException("Invalid Selenium Grid URL");
                     }
                     break;
                 case "firefoxdocker":
-                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    FirefoxOptions firefoxDockerOptions = new FirefoxOptions();
                     try {
-                        driver = new RemoteWebDriver(new URL(gridUrl), firefoxOptions);
+                        driver = new RemoteWebDriver(new URL(gridUrl), firefoxDockerOptions);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                         throw new RuntimeException("Invalid Selenium Grid URL");
