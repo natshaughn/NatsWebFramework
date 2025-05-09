@@ -7,6 +7,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import utility.ConfigReader;
 
+import java.nio.file.Files;
+
 public class Hooks {
     private WebDriver driver;
 
