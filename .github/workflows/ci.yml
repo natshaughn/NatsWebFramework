@@ -17,7 +17,7 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
-  build_test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,24 +30,5 @@ jobs:
 
       - name: Build and Run Tests
         run: mvn verify
-
-      - name: List report folder for debug
-        run: ls -R target/
-
-      - name: Wait for report generation
-        run: sleep 10
-
-      - name: Upload Cucumber HTML Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cucumber-html-report
-          path: target/cucumber-html-report/
-
-      - name: Upload Built JAR
-        uses: actions/upload-artifact@v4
-        with:
-          name: NatsWebFramework
-          path: target/*.jar
 
 
