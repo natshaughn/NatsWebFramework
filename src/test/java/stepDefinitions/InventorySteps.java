@@ -27,11 +27,16 @@ public class InventorySteps {
 
     @Then("^I am on the inventory page$")
     public void thenIAmOnTheInventoryPage() {
-        String actualTitle = inventory.getInventoryPageTitle();
         String expectedTitle = "Products";
-        assertEquals("Expected inventory page title did not match", expectedTitle, actualTitle);
-        System.out.println("Actual message.. " + actualTitle);
-        System.out.println("Expected message.. " + expectedTitle);
+        try {
+            String actualTitle = inventory.getInventoryPageTitle();
+            System.out.println("Actual message.. " + actualTitle);
+            System.out.println("Expected message.. " + expectedTitle);
+            assertEquals("Expected inventory page title did not match", expectedTitle, actualTitle);
+        } catch (Exception e) {
+            System.err.println("Error during inventory page check: " + e.getMessage());
+            throw new AssertionError("Inventory page check failed, possibly due to incorrect login or missing element.", e);
+        }
     }
 
     @Then("^the price of all products will be correct")
