@@ -13,8 +13,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  schedule:
-    - cron: '0 0 * * *'
+#  schedule:
+#    - cron: '0 0 * * *'
 
 jobs:
   build:
@@ -29,11 +29,27 @@ jobs:
           cache: maven
 
       - name: Build and Run Tests
-        run: mvn verify -DtestFailureIgnore=true
+        run: mvn verify -DtestFailureIgnore=true -Dcucumber.publish.quiet=true
 
-      - name: List files in target
+      - name: Debug – List all files in target/
         if: always()
-        run: ls -R target/
+        run: |
+          echo "Listing contents of target/ to debug report generation..."
+          ls -R target/ 
+
+      - name: Check if HTML Report Exists
+        if: always()
+        run: |
+          if [ -f target/cucumber-html-report/index.html ]; then
+            echo "HTML report was generated."
+          else
+            echo "HTML report NOT found at target/cucumber-html-report/index.html"
+            exit 1  # Optional: fail the step if expected report is missing
+          fi
+
+#      - name: List files in target
+#        if: always()
+#        run: ls -R target/
 
       - name: Upload Cucumber HTML Report
         if: always()
